@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Test2</string>
+    <string name="text2">参与方式：
+兴趣主报名【牛牛仔第一届人气兴趣大赏】活动，并且在评论处写下自己的参赛兴趣即可！
+奖项设置与评选规则：
+第一新成员兴趣奖（500元现金）：以活动期间“新成员”数判定，最低评选资格：“新成员”总人数达到300以上；\n
+第一人气兴趣（500元现金）: 以活动期间“活动成员”数判定，最低评选资格：“活动成员”总人数达到360以上；\n
+第一朝气兴趣（300元现金）：限12月新建兴趣，以活动期间“新成员”数判定，最低评选资格：“新成员”总人数达到100以上；\n
+第一发帖兴趣（300元现金）：以活动期间“发帖”数判定，最低评选资格：“发帖”总数达到720以上。\n
+ </string>
+    <string name="large_text">这是第一短文字\n这是第2短文字\n这是第3短文字\n这是第4短文字\n这是第5短文字\n这是第一短文字\n这是第一短文字\n这是第一短文字\n这是第2短文字\n这是第3短文字\n这是第4短文字\n这是第5短文字\n这是第一短文字\n这是第一短文字\n这是第一短文字\n这是第2短文字\n这是第3短文字\n这是第4短文字\n这是第5短文字\n这是第一短文字\n这是第一短文字\n这是第一短文字\n这是第2短文字\n这是第3短文字\n这是第4短文字\n这是第5短文字\n这是第一短文字\n这是第一短文字\n这是第一短文字\n这是第2短文字\n这是第3短文字\n这是第4短文字\n这是第5短文字\n这是第一短文字\n这是第一短文字\n这是第一短文字\n这是第2短文字\n这是第3短文字\n这是第4短文字\n这是第5短文字\n这是第一短文字\n这是第一短文字\n</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="image_url">http://a.hiphotos.baidu.com/image/pic/item/500fd9f9d72a6059f550a1832334349b023bbae3.jpg</string>
+
+
+</resources>
