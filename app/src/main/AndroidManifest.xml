@@ -23,7 +23,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Activity.FragmentActivity" />
+        <activity
+            android:name=".Activity.FragmentActivity"
+            android:windowSoftInputMode="adjustResize" />
 
         <activity android:name=".Activity.BaseActivity" />
 

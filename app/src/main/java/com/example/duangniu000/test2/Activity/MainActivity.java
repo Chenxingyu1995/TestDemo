@@ -1,6 +1,5 @@
 package com.example.duangniu000.test2.Activity;
 
-import android.annotation.SuppressLint;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -8,34 +7,19 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 
 import com.example.duangniu000.test2.CoustomView.StatusBarView;
+import com.example.duangniu000.test2.Fragment.GuessingFragment;
 import com.example.duangniu000.test2.Fragment.JokerListFragment;
 import com.example.duangniu000.test2.R;
-import com.example.duangniu000.test2.Request.Parms;
-import com.example.duangniu000.test2.Request.Url;
 import com.example.duangniu000.test2.Util.StatusBarHelper;
-import com.example.duangniu000.test2.retrofit.Get_interface;
 import com.example.duangniu000.test2.retrofit.TestRetroFit;
-
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+
 
 public class MainActivity extends BaseActivity {
 
@@ -66,7 +50,8 @@ public class MainActivity extends BaseActivity {
                 FragmentActivity.launcher(this, JokerListFragment.class);
                 break;
             case R.id.network:
-                TestRetroFit.TestMuitPart2(this);
+                FragmentActivity.launcher(this, GuessingFragment.class);
+
                 break;
         }
     }

@@ -108,13 +108,13 @@ public class TestRetroFit {
         parms.add("page", 1);
         parms.add("maxResult", 20);
 
-        retrofit.create(Get_interface.class).getCall3(parms.getField()).enqueue(new Callback<JokerResponse>() {
+        retrofit.create(Get_interface.class).getCall3("/341-3", parms.getField()).enqueue(new Callback<JokerResponse>() {
             @Override
             public void onResponse(Call<JokerResponse> call, Response<JokerResponse> response) {
                 List list = response.body().getShowapi_res_body().getContentlist();
                 Log.e("onResponse", list.toString());
                 Log.e("onResponse", "id" + Thread.currentThread().getId());
-                ToastUtil.showToast(context,"0000000");
+                ToastUtil.showToast(context, "0000000");
             }
 
             @Override

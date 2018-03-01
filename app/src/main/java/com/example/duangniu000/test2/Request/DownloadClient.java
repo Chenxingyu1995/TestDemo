@@ -73,7 +73,7 @@ public class DownloadClient {
         return new DownloadClient();
     }
 
-    public void downloadFile(String url) {
+    public void downloadFileGif(String url) {
         Message msg = handler.obtainMessage();
         msg.what = 200;
         handler.sendMessage(msg);

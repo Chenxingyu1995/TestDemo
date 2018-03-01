@@ -21,7 +21,6 @@ import com.example.duangniu000.test2.Activity.BaseActivity;
 import com.example.duangniu000.test2.R;
 import com.example.duangniu000.test2.Request.DownloadClient;
 import com.example.duangniu000.test2.Util.StatusBarHelper;
-import com.example.duangniu000.test2.Util.ToastUtil;
 import com.example.duangniu000.test2.Util.Util;
 
 import butterknife.BindView;
@@ -95,7 +94,7 @@ public class ImageFragment extends BaseFragment implements DownloadClient.LoadLi
         } else {
             DownloadClient build = DownloadClient.build();
             build.setLoadListener(this);
-            build.downloadFile(src);
+            build.downloadFileGif(src);
         }
     }
 

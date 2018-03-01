@@ -10,6 +10,16 @@ public class PagerResponse<T> {
     private int currentPage;
     private int maxResult;
 
+    private List<T> pb;
+
+    public List<T> getPb() {
+        return pb;
+    }
+
+    public void setPb(List<T> pb) {
+        this.pb = pb;
+    }
+
     public int getAllNum() {
         return allNum;
     }

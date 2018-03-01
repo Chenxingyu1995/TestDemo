@@ -1,6 +1,7 @@
 package com.example.duangniu000.test2.retrofit;
 
 
+import com.example.duangniu000.test2.data.GuessingResponse;
 import com.example.duangniu000.test2.data.JokerResponse;
 
 import java.util.HashMap;
@@ -31,5 +32,13 @@ public interface Get_interface {
 
     @POST("/341-3")
     @Multipart
-    Call<JokerResponse> getCall3(@PartMap  HashMap<String, RequestBody> map);
+    Call<JokerResponse> getCall3(@PartMap HashMap<String, RequestBody> map);
+
+    @POST("{path}")
+    @Multipart
+    Call<JokerResponse> getCall3(@Path("path") String path, @PartMap HashMap<String, RequestBody> map);
+
+    @POST("/151-4")
+    @Multipart
+    Call<GuessingResponse> getCall4(@PartMap HashMap<String, RequestBody> map);
 }
