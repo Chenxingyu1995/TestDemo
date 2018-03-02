@@ -19,33 +19,7 @@ import okhttp3.Response;
 
 public class TestClent {
 
-  /*
-    final Dispatcher dispatcher;  //分发器
-    final Proxy proxy;  //代理
-    final List<Protocol> protocols; //协议
-    final List<ConnectionSpec> connectionSpecs; //传输层版本和连接协议
-    final List<Interceptor> interceptors; //拦截器
-    final List<Interceptor> networkInterceptors; //网络拦截器
-    final ProxySelector proxySelector; //代理选择
-    final CookieJar cookieJar; //cookie
-    final Cache cache; //缓存
-    final InternalCache internalCache;  //内部缓存
-    final SocketFactory socketFactory;  //socket 工厂
-    final SSLSocketFactory sslSocketFactory; //安全套接层socket 工厂，用于HTTPS
-    final CertificateChainCleaner certificateChainCleaner; // 验证确认响应证书 适用 HTTPS 请求连接的主机名。
-    final HostnameVerifier hostnameVerifier;    //  主机名字确认
-    final CertificatePinner certificatePinner;  //  证书链
-    final Authenticator proxyAuthenticator;     //代理身份验证
-    final Authenticator authenticator;      // 本地身份验证
-    final ConnectionPool connectionPool;    //连接池,复用连接
-    final Dns dns;  //域名
-    final boolean followSslRedirects;  //安全套接层重定向
-    final boolean followRedirects;  //本地重定向
-    final boolean retryOnConnectionFailure; //重试连接失败
-    final int connectTimeout;    //连接超时
-    final int readTimeout; //read 超时
-    final int writeTimeout; //write 超时
-    */
+
 
 
     /**
@@ -79,52 +53,8 @@ public class TestClent {
      * http://www.w3school.com.cn/media/media_mimeref.asp
      **/
 
-    OkHttpClient client = new OkHttpClient();
+
     private void test() {
-
-        //一种：参数请求体
-        FormBody paramsBody = new FormBody.Builder()
-                .add("id", "currentPlan.getPlanId() + ")
-                .add("name", "currentPlan.getName()")
-                .add("volume", "currentPlan.getVolume()")
-                .add("type", "currentPlan.getType() + ")
-                .add("mode", "currentPlan.getMode() +")
-                .build();
-
-
-        //二种：文件请求体
-        MediaType type = MediaType.parse("application/octet-stream");//"text/xml;charset=utf-8"
-        File file = new File("/data/data/com.example.company/files/plan/plans.xml");
-        RequestBody fileBody = RequestBody.create(type, file);
-
-
-        //三种：混合参数和文件请求
-        RequestBody multipartBody = new MultipartBody.Builder()
-                .setType(MultipartBody.MIXED)
-                //一样的效果
-                .addPart(Headers.of("Content-Disposition", "form-data; name=\"params\""), paramsBody)
-                .addPart(Headers.of("Content-Disposition", "form-data; name=\"file\"; filename=\"plans.xml\""), fileBody)
-
-                //一样的效果
-        /*
-         *
-        .addFormDataPart("id",currentPlan.getPlanId()+"")
-        .addFormDataPart("name",currentPlan.getName())
-        .addFormDataPart("volume",currentPlan.getVolume())
-        .addFormDataPart("type",currentPlan.getType()+"")
-        .addFormDataPart("mode",currentPlan.getMode()+"")
-        .addFormDataPart("params","plans.xml",fileBody)
-
-        */
-                .build();
-
-
-        Request request = new Request.Builder().url("http://192.168.1.121:8080/Server/Service")
-                .addHeader("User-Agent", "android")
-                .header("Content-Type", "text/html; charset=utf-8;")
-                .post(multipartBody)//传参数、文件或者混合，改一下就行请求体就行
-                .build();
-
 
 
     }
