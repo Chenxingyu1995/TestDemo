@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import java.io.File;
 import java.util.Set;
 
+import okhttp3.Callback;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -48,13 +49,14 @@ public class RequestClient {
 
     private final static String TAG = "client";
 
-    public void newCall(ReCallBack callBack) {
+    public void newCall(Callback callBack) {
         Request.Builder builder = addHeader();
         builder.url(url);
         addRequestBody(builder);
         Request request = builder.build();
-        Log.i(TAG, "url:" + request.url() + "\nmethod:" + request.method());
-        Log.i(TAG, "Params:===>" + parms.toString());
+        Log.i(TAG, "url:" + request.url());
+        Log.i(TAG, "method:" + request.method());
+        Log.i(TAG, "Params:" + parms.toString());
         new OkHttpClient().newCall(request).enqueue(callBack);
     }
 
@@ -93,11 +95,29 @@ public class RequestClient {
         for (String next : set) {
             Object s = parms.get(next);
             if (s instanceof Integer) {
+                builder.addPart(MultipartBody.Part.createFormData(next, null, RequestBody.create(MediaTypeCode.getTypeString(), String.valueOf(s))));
+            } else if (s instanceof String) {
+                builder.addPart(MultipartBody.Part.createFormData(next, null, RequestBody.create(MediaTypeCode.getTypeString(), (String) s)));
+            } else if (s instanceof File) {
+                builder.addPart(MultipartBody.Part.createFormData(next, ((File) s).getName(), RequestBody.create(MediaTypeCode.getTypeOctetStream(), (File) s)));
+            }
+        }
+        return builder.build();
+    }
+
+
+    private MultipartBody toFrom2() {
+        MultipartBody.Builder builder = new MultipartBody.Builder();
+        builder.setType(MultipartBody.FORM);
+        Set<String> set = parms.keySet();
+        for (String next : set) {
+            Object s = parms.get(next);
+            if (s instanceof Integer) {
                 builder.addFormDataPart(next, String.valueOf(s));
             } else if (s instanceof String) {
                 builder.addFormDataPart(next, (String) s);
             } else if (s instanceof File) {
-                RequestBody body = RequestBody.create(MediaType.parse("application/octet-stream"), (File) s);
+                RequestBody body = RequestBody.create(MediaTypeCode.getTypeOctetStream(), (File) s);
                 builder.addFormDataPart(next, ((File) s).getName(), body);
             }
         }

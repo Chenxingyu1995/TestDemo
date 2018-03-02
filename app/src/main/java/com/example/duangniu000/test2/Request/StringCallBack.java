@@ -14,13 +14,13 @@ import okhttp3.Callback;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
-public abstract class ReCallBack implements Callback {
+public abstract class StringCallBack implements Callback {
 //    private Class<T> tClass;
 
     /**
      * 获取泛型类型
      */
-    public ReCallBack() {
+    public StringCallBack() {
 //        tClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
 
@@ -54,9 +54,9 @@ public abstract class ReCallBack implements Callback {
 
     }
 
-    public abstract void Response(Call call, String response);
+    abstract void Response(Call call, String response);
 
-    public abstract void Failure(Call call, IOException e);
+    abstract void Failure(Call call, IOException e);
 
 
 }

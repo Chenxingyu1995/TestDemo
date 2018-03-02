@@ -41,11 +41,20 @@ public class FragmentActivity extends BaseActivity {
     private void show(String name) {
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        Fragment fragment = Fragment.instantiate(this, name, extras);
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.container, fragment, name);
-        transaction.commitAllowingStateLoss();
+        try {
+            Fragment fragment = Fragment.instantiate(this, name, extras);
+            FragmentManager manager = getSupportFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            transaction.replace(R.id.container, fragment, name);
+            transaction.commitAllowingStateLoss();
+        } catch (ClassCastException e) {
+            android.app.Fragment fragment = android.app.Fragment.instantiate(this, name, extras);
+            android.app.FragmentManager manager = getFragmentManager();
+            android.app.FragmentTransaction transaction = manager.beginTransaction();
+            transaction.replace(R.id.container, fragment, name);
+            transaction.commitAllowingStateLoss();
+        }
+
     }
 
 }

@@ -112,7 +112,7 @@ public class GuessingFragment extends BaseFragment {
 //        parms.add("showapi_timestamp", format);
 //        parms.add("page", "1");
 //        parms.add("typeId", Guessing.type1);
-//        RequestClient.Build().url(Url.caiyicai).from().parms(parms).newCall(new ReCallBack() {
+//        RequestClient.Build().url(Url.caiyicai).from().parms(parms).newCall(new StringCallBack() {
 //            @Override
 //            public void Response(Call call, String response) {
 //                GuessingResponse fromJson = new Gson().fromJson(response, GuessingResponse.class);

@@ -22,6 +22,12 @@
         android:id="@+id/network"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="测试" />
+        android:text="谜语" />
+
+    <Button
+        android:id="@+id/buju"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="布局" />
 
 </LinearLayout>

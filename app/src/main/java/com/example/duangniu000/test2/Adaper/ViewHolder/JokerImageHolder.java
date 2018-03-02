@@ -23,7 +23,7 @@ public class JokerImageHolder extends BaseHolder<Joker> implements View.OnClickL
         super(itemView, activity);
         options = new RequestOptions();
         options.centerCrop();
-        options.diskCacheStrategy(DiskCacheStrategy.ALL);
+        options.diskCacheStrategy(DiskCacheStrategy.RESOURCE);
         imageView = itemView.findViewById(R.id.image);
         title = itemView.findViewById(R.id.titleTv);
         itemView.setOnClickListener(this);

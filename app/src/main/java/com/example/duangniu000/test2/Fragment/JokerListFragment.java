@@ -20,9 +20,10 @@ import com.example.duangniu000.test2.Adaper.JokerAdapter;
 import com.example.duangniu000.test2.Adaper.ViewHolder.BaseHolder;
 import com.example.duangniu000.test2.R;
 import com.example.duangniu000.test2.RefreshLayout.RefreshLayout2;
+import com.example.duangniu000.test2.Request.GsonCallBack;
 import com.example.duangniu000.test2.Request.Parms;
-import com.example.duangniu000.test2.Request.ReCallBack;
 import com.example.duangniu000.test2.Request.RequestClient;
+import com.example.duangniu000.test2.Request.RequestClient2;
 import com.example.duangniu000.test2.data.Joker;
 import com.example.duangniu000.test2.data.PagerResponse;
 import com.example.duangniu000.test2.data.JokerResponse;
@@ -37,6 +38,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import okhttp3.Call;
+import okhttp3.Response;
 
 public class JokerListFragment extends BaseFragment implements RefreshLayout2.OnRefreshListener, AbstractAdapter.OnItemClickListener {
 
@@ -97,16 +99,11 @@ public class JokerListFragment extends BaseFragment implements RefreshLayout2.On
         parms.add("showapi_timestamp", format);
         parms.add("page", pager);
         parms.add("maxResult", 20);
-        RequestClient.Build().url("http://route.showapi.com/341-3").from().parms(parms).newCall(new ReCallBack() {
+        RequestClient.Build().url("http://route.showapi.com/341-3").from().parms(parms).newCall(new GsonCallBack<JokerResponse>() {
             @Override
-            public void Response(Call call, String response) {
-
-                if (!isAdded()) return;
-
+            public void Response(Call call, JokerResponse response) {
                 pager++;
-                JokerResponse jokerResponse = new Gson().fromJson(response, JokerResponse.class);
-                PagerResponse body = jokerResponse.getShowapi_res_body();
-                List<Joker> contentlist = body.getContentlist();
+                List<Joker> contentlist = response.getShowapi_res_body().getContentlist();
                 int size = adapter.getList().size();
                 adapter.addAll(contentlist);
                 adapter.notifyItemRangeChanged(size, size + contentlist.size() - 1);
@@ -115,10 +112,8 @@ public class JokerListFragment extends BaseFragment implements RefreshLayout2.On
 
             @Override
             public void Failure(Call call, IOException e) {
-                swipeRefreshLayout.refreshComplete();
+
             }
-
-
         });
     }
 

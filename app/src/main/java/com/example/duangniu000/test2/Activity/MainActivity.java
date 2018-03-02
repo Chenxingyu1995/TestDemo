@@ -14,7 +14,6 @@ import com.example.duangniu000.test2.Fragment.GuessingFragment;
 import com.example.duangniu000.test2.Fragment.JokerListFragment;
 import com.example.duangniu000.test2.R;
 import com.example.duangniu000.test2.Util.StatusBarHelper;
-import com.example.duangniu000.test2.retrofit.TestRetroFit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,7 +42,7 @@ public class MainActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.start, R.id.network})
+    @OnClick({R.id.start, R.id.network, R.id.buju})
     public void onViewClicked(View v) {
         switch (v.getId()) {
             case R.id.start:
@@ -51,7 +50,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.network:
                 FragmentActivity.launcher(this, GuessingFragment.class);
-
+                break;
+            case R.id.buju:
+//                FragmentActivity.launcher(this, MWebViewFragment.class);
                 break;
         }
     }
