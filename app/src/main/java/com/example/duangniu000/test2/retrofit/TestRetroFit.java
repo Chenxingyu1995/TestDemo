@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 
+import com.example.duangniu000.test2.Request.MediaTypeCode;
 import com.example.duangniu000.test2.Request.Parms;
 import com.example.duangniu000.test2.Request.Url;
 import com.example.duangniu000.test2.Util.ToastUtil;
@@ -39,7 +40,7 @@ public class TestRetroFit {
          *构造 RequestBody map
          **/
         HashMap<String, RequestBody> bodyHashMap = new HashMap<>();
-        MediaType textType = MediaType.parse("text/plan");
+        MediaType textType = MediaTypeCode.getTypeString();
 
         @SuppressLint("SimpleDateFormat")
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -98,9 +99,7 @@ public class TestRetroFit {
         @SuppressLint("SimpleDateFormat")
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
         String format = dateFormat.format(new Date());
-        /**
-         *参数类型必须指定，否则无法转换  Object 就不行
-         **/
+
         RequestField parms = new RequestField();
         parms.add("showapi_appid", "57487");
         parms.add("showapi_sign", "f4cec95e4bb34f249627d873bdd28537");
