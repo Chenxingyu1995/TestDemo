@@ -29,6 +29,10 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Transformation;
 import android.widget.AbsListView;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import com.example.duangniu000.test2.CoustomView.StatusBarView;
+import com.example.duangniu000.test2.R;
 
 
 /**
@@ -124,7 +128,7 @@ public class CoustomRefreshLayout extends ViewGroup implements NestedScrollingPa
             android.R.attr.enabled
     };
 
-    CircleImageView mCircleView;
+    StatusBarView mCircleView;
     private int mCircleViewIndex = -1;
 
     protected int mFrom;
@@ -135,7 +139,7 @@ public class CoustomRefreshLayout extends ViewGroup implements NestedScrollingPa
 
     int mSpinnerOffsetEnd;
 
-    CircularProgressDrawable mProgress;
+    TextView mProgress;
 
     private Animation mScaleAnimation;
 
@@ -169,8 +173,8 @@ public class CoustomRefreshLayout extends ViewGroup implements NestedScrollingPa
         public void onAnimationEnd(Animation animation) {
             if (mRefreshing) {
                 // Make sure the progress view is fully visible
-                mProgress.setAlpha(MAX_ALPHA);
-                mProgress.start();
+                mProgress.setAlpha(1);
+//                mProgress.start();
                 if (mNotify) {
                     if (mListener != null) {
                         mListener.onRefresh();
@@ -185,7 +189,7 @@ public class CoustomRefreshLayout extends ViewGroup implements NestedScrollingPa
 
     void reset() {
         mCircleView.clearAnimation();
-        mProgress.stop();
+//        mProgress.stop();
         mCircleView.setVisibility(View.GONE);
         setColorViewAlpha(MAX_ALPHA);
         // Return the circle to its start position
@@ -295,9 +299,9 @@ public class CoustomRefreshLayout extends ViewGroup implements NestedScrollingPa
         // force the bounds of the progress circle inside the circle view to
         // update by setting it to null before updating its size and then
         // re-setting it
-        mCircleView.setImageDrawable(null);
-        mProgress.setStyle(size);
-        mCircleView.setImageDrawable(mProgress);
+//        mCircleView.setImageDrawable(null);
+//        mProgress.setStyle(size);
+//        mCircleView.setImageDrawable(mProgress);
     }
 
     /**
@@ -364,10 +368,11 @@ public class CoustomRefreshLayout extends ViewGroup implements NestedScrollingPa
     }
 
     private void createProgressView() {
-        mCircleView = new CircleImageView(getContext(), CIRCLE_BG_LIGHT);
-        mProgress = new CircularProgressDrawable(getContext());
-        mProgress.setStyle(CircularProgressDrawable.DEFAULT);
-        mCircleView.setImageDrawable(mProgress);
+        mCircleView = new StatusBarView(getContext());
+        mCircleView.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+        mProgress = mCircleView.findViewById(R.id.titleTv);
+//        mProgress.setStyle(CircularProgressDrawable.DEFAULT);
+//        mCircleView.setImageDrawable(mProgress);
         mCircleView.setVisibility(View.GONE);
         addView(mCircleView);
     }
@@ -410,7 +415,7 @@ public class CoustomRefreshLayout extends ViewGroup implements NestedScrollingPa
             // Pre API 11, alpha is used in place of scale up to show the
             // progress circle appearing.
             // Don't adjust the alpha during appearance otherwise.
-            mProgress.setAlpha(MAX_ALPHA);
+            mProgress.setAlpha(1);
         }
         mScaleAnimation = new Animation() {
             @Override
@@ -420,7 +425,7 @@ public class CoustomRefreshLayout extends ViewGroup implements NestedScrollingPa
         };
         mScaleAnimation.setDuration(mMediumAnimationDuration);
         if (listener != null) {
-            mCircleView.setAnimationListener(listener);
+//            mCircleView.setAnimationListener(listener);
         }
         mCircleView.clearAnimation();
         mCircleView.startAnimation(mScaleAnimation);
@@ -457,17 +462,17 @@ public class CoustomRefreshLayout extends ViewGroup implements NestedScrollingPa
             }
         };
         mScaleDownAnimation.setDuration(SCALE_DOWN_DURATION);
-        mCircleView.setAnimationListener(listener);
+//        mCircleView.setAnimationListener(listener);
         mCircleView.clearAnimation();
         mCircleView.startAnimation(mScaleDownAnimation);
     }
 
     private void startProgressAlphaStartAnimation() {
-        mAlphaStartAnimation = startAlphaAnimation(mProgress.getAlpha(), STARTING_PROGRESS_ALPHA);
+        mAlphaStartAnimation = startAlphaAnimation((int) mProgress.getAlpha(), STARTING_PROGRESS_ALPHA);
     }
 
     private void startProgressAlphaMaxAnimation() {
-        mAlphaMaxAnimation = startAlphaAnimation(mProgress.getAlpha(), MAX_ALPHA);
+        mAlphaMaxAnimation = startAlphaAnimation((int) mProgress.getAlpha(), MAX_ALPHA);
     }
 
     private Animation startAlphaAnimation(final int startingAlpha, final int endingAlpha) {
@@ -480,7 +485,7 @@ public class CoustomRefreshLayout extends ViewGroup implements NestedScrollingPa
         };
         alpha.setDuration(ALPHA_ANIMATION_DURATION);
         // Clear out the previous animation listeners.
-        mCircleView.setAnimationListener(null);
+//        mCircleView.setAnimationListener(null);
         mCircleView.clearAnimation();
         mCircleView.startAnimation(alpha);
         return alpha;
@@ -545,7 +550,7 @@ public class CoustomRefreshLayout extends ViewGroup implements NestedScrollingPa
      */
     public void setColorSchemeColors(@ColorInt int... colors) {
         ensureTarget();
-        mProgress.setColorSchemeColors(colors);
+//        mProgress.setColorSchemeColors(colors);
     }
 
     /**
@@ -889,7 +894,7 @@ public class CoustomRefreshLayout extends ViewGroup implements NestedScrollingPa
     }
 
     private void moveSpinner(float overscrollTop) {
-        mProgress.setArrowEnabled(true);
+//        mProgress.setArrowEnabled(true);
         float originalDragPercent = overscrollTop / mTotalDragDistance;
 
         float dragPercent = Math.min(1f, Math.abs(originalDragPercent));
@@ -929,11 +934,12 @@ public class CoustomRefreshLayout extends ViewGroup implements NestedScrollingPa
             }
         }
         float strokeStart = adjustedPercent * .8f;
-        mProgress.setStartEndTrim(0f, Math.min(MAX_PROGRESS_ANGLE, strokeStart));
-        mProgress.setArrowScale(Math.min(1f, adjustedPercent));
+//        mProgress.setStartEndTrim(0f, Math.min(MAX_PROGRESS_ANGLE, strokeStart));
+//        mProgress.setArrowScale(Math.min(1f, adjustedPercent));
 
         float rotation = (-0.25f + .4f * adjustedPercent + tensionPercent * 2) * .5f;
-        mProgress.setProgressRotation(rotation);
+        //TODO 刷新动画
+//        mProgress.setProgressRotation(rotation);
         setTargetOffsetTopAndBottom(targetY - mCurrentTargetOffsetTop);
     }
 
@@ -943,7 +949,7 @@ public class CoustomRefreshLayout extends ViewGroup implements NestedScrollingPa
         } else {
             // cancel refresh
             mRefreshing = false;
-            mProgress.setStartEndTrim(0f, 0f);
+//            mProgress.setStartEndTrim(0f, 0f);
             Animation.AnimationListener listener = null;
             if (!mScale) {
                 listener = new Animation.AnimationListener() {
@@ -966,7 +972,7 @@ public class CoustomRefreshLayout extends ViewGroup implements NestedScrollingPa
                 };
             }
             animateOffsetToStartPosition(mCurrentTargetOffsetTop, listener);
-            mProgress.setArrowEnabled(false);
+//            mProgress.setArrowEnabled(false);
         }
     }
 
@@ -1054,7 +1060,7 @@ public class CoustomRefreshLayout extends ViewGroup implements NestedScrollingPa
         if (yDiff > mTouchSlop && !mIsBeingDragged) {
             mInitialMotionY = mInitialDownY + mTouchSlop;
             mIsBeingDragged = true;
-            mProgress.setAlpha(STARTING_PROGRESS_ALPHA);
+            mProgress.setAlpha(0.5f);
         }
     }
 
@@ -1064,7 +1070,7 @@ public class CoustomRefreshLayout extends ViewGroup implements NestedScrollingPa
         mAnimateToCorrectPosition.setDuration(ANIMATE_TO_TRIGGER_DURATION);
         mAnimateToCorrectPosition.setInterpolator(mDecelerateInterpolator);
         if (listener != null) {
-            mCircleView.setAnimationListener(listener);
+//            mCircleView.setAnimationListener(listener);
         }
         mCircleView.clearAnimation();
         mCircleView.startAnimation(mAnimateToCorrectPosition);
@@ -1080,7 +1086,7 @@ public class CoustomRefreshLayout extends ViewGroup implements NestedScrollingPa
             mAnimateToStartPosition.setDuration(ANIMATE_TO_START_DURATION);
             mAnimateToStartPosition.setInterpolator(mDecelerateInterpolator);
             if (listener != null) {
-                mCircleView.setAnimationListener(listener);
+//                mCircleView.setAnimationListener(listener);
             }
             mCircleView.clearAnimation();
             mCircleView.startAnimation(mAnimateToStartPosition);
@@ -1100,7 +1106,7 @@ public class CoustomRefreshLayout extends ViewGroup implements NestedScrollingPa
             targetTop = (mFrom + (int) ((endTarget - mFrom) * interpolatedTime));
             int offset = targetTop - mCircleView.getTop();
             setTargetOffsetTopAndBottom(offset);
-            mProgress.setArrowScale(1 - interpolatedTime);
+//            mProgress.setArrowScale(1 - interpolatedTime);
         }
     };
 
@@ -1132,7 +1138,7 @@ public class CoustomRefreshLayout extends ViewGroup implements NestedScrollingPa
         };
         mScaleDownToStartAnimation.setDuration(SCALE_DOWN_DURATION);
         if (listener != null) {
-            mCircleView.setAnimationListener(listener);
+//            mCircleView.setAnimationListener(listener);
         }
         mCircleView.clearAnimation();
         mCircleView.startAnimation(mScaleDownToStartAnimation);

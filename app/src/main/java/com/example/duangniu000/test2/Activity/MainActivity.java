@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.example.duangniu000.test2.CoustomView.StatusBarView;
 import com.example.duangniu000.test2.Fragment.GuessingFragment;
 import com.example.duangniu000.test2.Fragment.JokerListFragment;
 import com.example.duangniu000.test2.R;
+import com.example.duangniu000.test2.RefreshLayout.CoustomRefreshLayout;
 import com.example.duangniu000.test2.Util.StatusBarHelper;
 
 import butterknife.BindView;
@@ -24,6 +26,10 @@ public class MainActivity extends BaseActivity {
 
     @BindView(R.id.status_bar)
     StatusBarView statusBar;
+    @BindView(R.id.swipe_refresh_layout)
+    CoustomRefreshLayout swipeRefreshLayout;
+
+    SwipeRefreshLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +40,12 @@ public class MainActivity extends BaseActivity {
         StatusBarHelper.setStatusBarLightMode(this);
         statusBar.setStatusBar(translucent);
         statusBar.setBackgroundColor(getColorRes(R.color.colorPrimary));
+        swipeRefreshLayout.setOnRefreshListener(new CoustomRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
     }
 
     @Override

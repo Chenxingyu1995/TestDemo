@@ -7,27 +7,44 @@
     android:orientation="vertical"
     tools:context="com.example.duangniu000.test2.Activity.MainActivity">
 
-    <com.example.duangniu000.test2.CoustomView.StatusBarView
-        android:id="@+id/status_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></com.example.duangniu000.test2.CoustomView.StatusBarView>
 
-    <Button
-        android:id="@+id/start"
+    <com.example.duangniu000.test2.RefreshLayout.CoustomRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="gif" />
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/network"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="谜语" />
+            <com.example.duangniu000.test2.CoustomView.StatusBarView
+                android:id="@+id/status_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></com.example.duangniu000.test2.CoustomView.StatusBarView>
 
-    <Button
-        android:id="@+id/buju"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="布局" />
+            <Button
+                android:id="@+id/start"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="gif" />
+
+            <Button
+                android:id="@+id/network"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="谜语" />
+
+            <Button
+                android:id="@+id/buju"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="布局" />
+
+        </LinearLayout>
+
+    </com.example.duangniu000.test2.RefreshLayout.CoustomRefreshLayout>
+
+
+
 
 </LinearLayout>

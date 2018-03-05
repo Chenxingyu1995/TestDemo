@@ -1,6 +1,7 @@
 package com.example.duangniu000.test2.Request;
 
 
+import android.arch.lifecycle.Lifecycle;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -154,6 +155,8 @@ public class RequestClient2 {
         void onError(Call call, IOException e);
 
     }
+
+
 
 
     private void onResponse(final Call call, final Response response, final OnRequestListener listener) {

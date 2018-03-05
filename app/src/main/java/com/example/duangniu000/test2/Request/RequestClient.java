@@ -1,8 +1,21 @@
 package com.example.duangniu000.test2.Request;
 
 
+import android.app.Activity;
+import android.app.Application;
+import android.arch.lifecycle.Lifecycle;
+import android.content.Context;
+import android.content.ContextWrapper;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestManager;
+import com.bumptech.glide.manager.LifecycleListener;
 import com.google.gson.Gson;
 
 import java.io.File;
@@ -16,7 +29,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 
-public class RequestClient {
+public class RequestClient implements RequestLifecycle {
 
     private int REQUEST_TYPE = GET;
     private String url;
@@ -26,13 +39,9 @@ public class RequestClient {
     private static final int JSON = 3;
     private static final int FROM = 4;
 
-    private RequestClient() {
-    }
-
     public static RequestClient Build() {
         return new RequestClient();
     }
-
 
     public RequestClient url(String url) {
         this.url = url;
@@ -141,5 +150,20 @@ public class RequestClient {
     public void clear() {
         this.parms = null;
         this.url = null;
+    }
+
+    @Override
+    public void onStart() {
+        Log.e(TAG, "onStart");
+    }
+
+    @Override
+    public void onPause() {
+        Log.e(TAG, "onPause");
+    }
+
+    @Override
+    public void onStop() {
+        Log.e(TAG, "onStop");
     }
 }
