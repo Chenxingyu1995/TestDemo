@@ -33,6 +33,7 @@ import android.widget.TextView;
 
 import com.example.duangniu000.test2.CoustomView.StatusBarView;
 import com.example.duangniu000.test2.R;
+import com.example.duangniu000.test2.Util.ToastUtil;
 
 
 /**
@@ -172,6 +173,7 @@ public class CoustomRefreshLayout extends ViewGroup implements NestedScrollingPa
         @Override
         public void onAnimationEnd(Animation animation) {
             if (mRefreshing) {
+                ToastUtil.showToast(getContext(),"refresh");
                 // Make sure the progress view is fully visible
                 mProgress.setAlpha(1);
 //                mProgress.start();
@@ -1060,7 +1062,6 @@ public class CoustomRefreshLayout extends ViewGroup implements NestedScrollingPa
         if (yDiff > mTouchSlop && !mIsBeingDragged) {
             mInitialMotionY = mInitialDownY + mTouchSlop;
             mIsBeingDragged = true;
-            mProgress.setAlpha(0.5f);
         }
     }
 
@@ -1070,7 +1071,7 @@ public class CoustomRefreshLayout extends ViewGroup implements NestedScrollingPa
         mAnimateToCorrectPosition.setDuration(ANIMATE_TO_TRIGGER_DURATION);
         mAnimateToCorrectPosition.setInterpolator(mDecelerateInterpolator);
         if (listener != null) {
-//            mCircleView.setAnimationListener(listener);
+
         }
         mCircleView.clearAnimation();
         mCircleView.startAnimation(mAnimateToCorrectPosition);
@@ -1106,7 +1107,6 @@ public class CoustomRefreshLayout extends ViewGroup implements NestedScrollingPa
             targetTop = (mFrom + (int) ((endTarget - mFrom) * interpolatedTime));
             int offset = targetTop - mCircleView.getTop();
             setTargetOffsetTopAndBottom(offset);
-//            mProgress.setArrowScale(1 - interpolatedTime);
         }
     };
 
@@ -1145,7 +1145,7 @@ public class CoustomRefreshLayout extends ViewGroup implements NestedScrollingPa
     }
 
     void setTargetOffsetTopAndBottom(int offset) {
-        mCircleView.bringToFront();
+
         ViewCompat.offsetTopAndBottom(mCircleView, offset);
         mCurrentTargetOffsetTop = mCircleView.getTop();
     }

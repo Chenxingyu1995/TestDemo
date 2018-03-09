@@ -1,7 +1,6 @@
 package com.example.duangniu000.test2.Request;
 
 
-import android.arch.lifecycle.Lifecycle;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -29,7 +28,7 @@ import okhttp3.Response;
 public class RequestClient2 {
     private int requestType = GET;
     private String url;
-    private Parms parms;
+    private Params parms;
 
     private static final int GET = 1;
     private static final int JSON = 3;
@@ -50,7 +49,7 @@ public class RequestClient2 {
         return this;
     }
 
-    public RequestClient2 parms(Parms parms) {
+    public RequestClient2 parms(Params parms) {
         this.parms = parms;
         return this;
     }

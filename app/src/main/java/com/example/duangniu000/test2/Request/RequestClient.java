@@ -1,28 +1,14 @@
 package com.example.duangniu000.test2.Request;
 
 
-import android.app.Activity;
-import android.app.Application;
-import android.arch.lifecycle.Lifecycle;
-import android.content.Context;
-import android.content.ContextWrapper;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestManager;
-import com.bumptech.glide.manager.LifecycleListener;
 import com.google.gson.Gson;
 
 import java.io.File;
 import java.util.Set;
 
 import okhttp3.Callback;
-import okhttp3.Headers;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -33,7 +19,7 @@ public class RequestClient implements RequestLifecycle {
 
     private int REQUEST_TYPE = GET;
     private String url;
-    private Parms parms;
+    private Params parms;
 
     private static final int GET = 1;
     private static final int JSON = 3;
@@ -48,7 +34,7 @@ public class RequestClient implements RequestLifecycle {
         return this;
     }
 
-    public RequestClient parms(Parms parms) {
+    public RequestClient parms(Params parms) {
         this.parms = parms;
         return this;
     }

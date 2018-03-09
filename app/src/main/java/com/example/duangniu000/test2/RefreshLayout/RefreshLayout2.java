@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.GridView;
 import android.widget.TextView;
 
 import com.example.duangniu000.test2.R;
@@ -45,7 +47,7 @@ public class RefreshLayout2 extends ViewGroup {
     /**
      * 滑动阻尼系数
      **/
-    protected float damp = 2.5f;
+    protected float damp = 3.5f;
 
     /**
      * 是否开启下拉刷新
@@ -339,7 +341,7 @@ public class RefreshLayout2 extends ViewGroup {
             setLoadMoreText("加载完成");
             footIcon.setVisibility(GONE);
         } else {
-            ToastUtil.showToast(getContext(), "刷新错误");
+//            ToastUtil.showToast(getContext(), "刷新错误");
         }
 
         if (ViewCompat.isAttachedToWindow(this)) {
@@ -348,40 +350,56 @@ public class RefreshLayout2 extends ViewGroup {
     }
 
     public void autoRefresh() {
-        refresh_status = START_ING;
-        type = refresh_type.DOWN;
-        ValueAnimator animator = ValueAnimator.ofInt(0, min_distance);
-        animator.setDuration(300);
-        animator.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-                setRefreshText("下拉刷新");
-            }
 
+        this.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
-            public void onAnimationEnd(Animator animation) {
-                if (onRefreshListener != null)
-                    onRefreshListener.onLoadMore(RefreshLayout2.this);
-            }
+            public void onGlobalLayout() {
+                getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        refresh_status = START_ING;
+                        type = refresh_type.DOWN;
+                        ValueAnimator animator = ValueAnimator.ofInt(0, min_distance);
+                        animator.setDuration(300);
+                        animator.addListener(new Animator.AnimatorListener() {
+                            @Override
+                            public void onAnimationStart(Animator animation) {
+                                setRefreshText("下拉刷新");
+                            }
 
-            @Override
-            public void onAnimationCancel(Animator animation) {
-            }
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                if (onRefreshListener != null)
+                                    onRefreshListener.onLoadMore(RefreshLayout2.this);
+                            }
 
-            @Override
-            public void onAnimationRepeat(Animator animation) {
+                            @Override
+                            public void onAnimationCancel(Animator animation) {
+                            }
+
+                            @Override
+                            public void onAnimationRepeat(Animator animation) {
+                            }
+                        });
+                        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                            @Override
+                            public void onAnimationUpdate(ValueAnimator animation) {
+                                int value = (int) animation.getAnimatedValue();
+                                scrollTo(0, -value);
+                                isRefreshDown(value);
+                            }
+
+                        });
+                        animator.start();
+                    }
+                }, 500);
+
+
             }
         });
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                int value = (int) animation.getAnimatedValue();
-                scrollTo(0, -value);
-                isRefreshDown(value);
-            }
 
-        });
-        animator.start();
+
     }
 
     private void setRefreshText(String string) {
@@ -422,7 +440,6 @@ public class RefreshLayout2 extends ViewGroup {
                 }
                 break;
         }
-
 
         return super.onInterceptTouchEvent(ev);
     }

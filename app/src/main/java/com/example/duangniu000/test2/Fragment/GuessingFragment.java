@@ -106,7 +106,7 @@ public class GuessingFragment extends BaseFragment {
         @SuppressLint("SimpleDateFormat")
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
         String format = dateFormat.format(new Date());
-//        Parms parms = Parms.getInstance();
+//        Params parms = Params.build();
 //        parms.add("showapi_appid", "57487");
 //        parms.add("showapi_sign", "f4cec95e4bb34f249627d873bdd28537");
 //        parms.add("showapi_timestamp", format);

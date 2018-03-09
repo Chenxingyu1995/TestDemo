@@ -6,7 +6,6 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.duangniu000.test2.Request.MediaTypeCode;
-import com.example.duangniu000.test2.Request.Parms;
 import com.example.duangniu000.test2.Request.Url;
 import com.example.duangniu000.test2.Util.ToastUtil;
 import com.example.duangniu000.test2.data.JokerResponse;
