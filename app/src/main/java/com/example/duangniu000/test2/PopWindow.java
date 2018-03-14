@@ -21,7 +21,7 @@ public class PopWindow extends PopupWindow implements View.OnKeyListener {
 
     public PopWindow(Context context) {
         super(context);
-        View inflate = LayoutInflater.from(context).inflate(R.layout.pop_windwo, null, false);
+         View inflate = LayoutInflater.from(context).inflate( 0, null, false);
 
         inflate.setFocusable(true);
         inflate.setFocusableInTouchMode(true);

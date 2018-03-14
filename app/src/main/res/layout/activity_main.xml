@@ -7,34 +7,22 @@
     android:orientation="vertical"
     tools:context="com.example.duangniu000.test2.Activity.MainActivity">
 
-
-    <LinearLayout
+    <com.example.duangniu000.test2.CoustomView.StatusBarView
+        android:id="@+id/status_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content" />
 
-        <com.example.duangniu000.test2.CoustomView.StatusBarView
-            android:id="@+id/status_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </android.support.design.widget.TabLayout>
 
-        <Button
-            android:id="@+id/start"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="一" />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/network"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="二" />
+    </android.support.v4.view.ViewPager>
 
-        <Button
-            android:id="@+id/buju"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="三" />
-
-    </LinearLayout>
 </LinearLayout>

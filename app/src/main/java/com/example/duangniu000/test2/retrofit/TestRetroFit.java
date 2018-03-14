@@ -5,10 +5,9 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 
-import com.example.duangniu000.test2.Request.MediaTypeCode;
-import com.example.duangniu000.test2.Request.Url;
+import com.example.duangniu000.test2.Okhttp.MediaTypeCode;
+import com.example.duangniu000.test2.Okhttp.Url;
 import com.example.duangniu000.test2.Util.ToastUtil;
-import com.example.duangniu000.test2.data.JokerResponse;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -106,20 +105,20 @@ public class TestRetroFit {
         parms.add("page", 1);
         parms.add("maxResult", 20);
 
-        retrofit.create(Get_interface.class).getCall3("/341-3", parms.getField()).enqueue(new Callback<JokerResponse>() {
-            @Override
-            public void onResponse(Call<JokerResponse> call, Response<JokerResponse> response) {
-                List list = response.body().getShowapi_res_body().getContentlist();
-                Log.e("onResponse", list.toString());
-                Log.e("onResponse", "id" + Thread.currentThread().getId());
-                ToastUtil.showToast(context, "0000000");
-            }
-
-            @Override
-            public void onFailure(Call<JokerResponse> call, Throwable t) {
-
-            }
-        });
+//        retrofit.create(Get_interface.class).getCall3("/341-3", parms.getField()).enqueue(new Callback<com.example.duangniu000.test2.data.Response>() {
+//            @Override
+//            public void onResponse(Call<JokerResponse> call, Response<JokerResponse> response) {
+//                List list = response.body().getShowapi_res_body().getContentlist();
+//                Log.e("onResponse", list.toString());
+//                Log.e("onResponse", "id" + Thread.currentThread().getId());
+//                ToastUtil.showToast(context, "0000000");
+//            }
+//
+//            @Override
+//            public void onFailure(Call<JokerResponse> call, Throwable t) {
+//
+//            }
+//        });
     }
 
     /**

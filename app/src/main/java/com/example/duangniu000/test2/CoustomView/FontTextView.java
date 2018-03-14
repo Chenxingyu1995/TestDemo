@@ -6,6 +6,8 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+
 public class FontTextView extends android.support.v7.widget.AppCompatTextView {
 
     public FontTextView(Context context) {

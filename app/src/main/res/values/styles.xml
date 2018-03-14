@@ -18,6 +18,10 @@
         <attr name="text_size" format="dimension" />
     </declare-styleable>
 
+    <declare-styleable name="CheckView">
+        <attr name="maxSize" format="integer" />
+    </declare-styleable>
+
     <style name="AppTheme.NoActionBar" parent="AppTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

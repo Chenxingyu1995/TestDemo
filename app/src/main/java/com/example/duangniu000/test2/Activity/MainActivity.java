@@ -1,5 +1,7 @@
 package com.example.duangniu000.test2.Activity;
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -8,30 +10,41 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TabLayout;
 import android.support.v4.graphics.drawable.DrawableCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
-import com.example.duangniu000.test2.CoustomView.GoldView;
-import com.example.duangniu000.test2.CoustomView.RandomTextView;
 import com.example.duangniu000.test2.CoustomView.StatusBarView;
-import com.example.duangniu000.test2.Fragment.GuessingFragment;
-import com.example.duangniu000.test2.Fragment.JokerListFragment;
-import com.example.duangniu000.test2.Fragment.StringListFragment;
+import com.example.duangniu000.test2.Okhttp.GsonCallBack;
+import com.example.duangniu000.test2.Okhttp.Params;
+import com.example.duangniu000.test2.Okhttp.RequestClient;
+import com.example.duangniu000.test2.Okhttp.Url;
 import com.example.duangniu000.test2.R;
 import com.example.duangniu000.test2.Util.StatusBarHelper;
+import com.example.duangniu000.test2.data.ShowApiResponse;
+
+import java.io.IOException;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
+import okhttp3.Call;
 
 
 public class MainActivity extends BaseActivity {
 
     @BindView(R.id.status_bar)
     StatusBarView statusBar;
+    @BindView(R.id.tabView)
+    TabLayout tabView;
+    @BindView(R.id.viewPager)
+    ViewPager viewPager;
+
+    private List<String> title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +55,29 @@ public class MainActivity extends BaseActivity {
         StatusBarHelper.setStatusBarLightMode(this);
         statusBar.setStatusBar(translucent);
         statusBar.setBackgroundColor(getColorRes(R.color.colorPrimary));
+        netWork();
     }
+
+
+    private void netWork(){
+
+        Params build = Params.build();
+
+        RequestClient.Build().parms(build).url(Url.m1n2+Url.leixin).from().newCall(new GsonCallBack<ShowApiResponse>() {
+            @Override
+            public void Response(Call call, ShowApiResponse response) {
+
+            }
+
+            @Override
+            public void Failure(Call call, IOException e) {
+
+            }
+        });
+
+
+    }
+
 
     /**
      * Drawable 颜色转化类
@@ -60,22 +95,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-    }
-
-
-    @OnClick({R.id.start, R.id.network, R.id.buju})
-    public void onViewClicked(View v) {
-        switch (v.getId()) {
-            case R.id.start:
-                FragmentActivity.launcher(this, JokerListFragment.class);
-                break;
-            case R.id.network:
-                FragmentActivity.launcher(this, GuessingFragment.class);
-                break;
-            case R.id.buju:
-                FragmentActivity.launcher(this, StringListFragment.class);
-                break;
-        }
     }
 
 
@@ -144,4 +163,54 @@ public class MainActivity extends BaseActivity {
             }
         }
     }
+
+    public static boolean isActive = true; //全局变量
+
+    @Override
+    protected void onResume() {
+        if (!isActive) {
+            //app 从后台唤醒，进入前台
+            isActive = true;
+            Log.i("ACTIVITY", "程序从后台唤醒");
+        }
+        super.onResume();
+    }
+
+    @Override
+    protected void onStop() {
+        if (!isAppOnForeground()) {
+            //app 进入后台
+            isActive = false;//记录当前已经进入后台
+            Log.i("ACTIVITY", "程序进入后台");
+        }
+        super.onStop();
+    }
+
+    /**
+     * APP是否处于前台唤醒状态
+     *
+     * @return
+     */
+    public boolean isAppOnForeground() {
+        ActivityManager activityManager = (ActivityManager) getApplicationContext().getSystemService(Context.ACTIVITY_SERVICE);
+        String packageName = getApplicationContext().getPackageName();
+        List<ActivityManager.RunningAppProcessInfo> appProcesses = null;
+        if (activityManager != null) {
+            appProcesses = activityManager.getRunningAppProcesses();
+        }
+        if (appProcesses == null)
+            return false;
+
+        for (ActivityManager.RunningAppProcessInfo appProcess : appProcesses) {
+            // The name of the process that this object is associated with.
+            if (appProcess.processName.equals(packageName)
+                    && appProcess.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
 }

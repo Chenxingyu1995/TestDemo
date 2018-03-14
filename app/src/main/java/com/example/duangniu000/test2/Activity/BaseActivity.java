@@ -1,10 +1,12 @@
 package com.example.duangniu000.test2.Activity;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.Window;
@@ -14,8 +16,11 @@ import com.example.duangniu000.test2.Util.DisplayHelper;
 
 import java.lang.reflect.Field;
 import java.util.Collection;
+import java.util.List;
 
 public class BaseActivity extends AppCompatActivity {
+
+
 
     protected void hideActionBar() {
         try {
@@ -57,14 +62,20 @@ public class BaseActivity extends AppCompatActivity {
         return charSequence == null || charSequence.length() == 0;
     }
 
-
     public int getColorRes(int color_res) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             return getResources().getColor(color_res, getTheme());
         } else {
             return getResources().getColor(color_res);
         }
-
-
     }
+
+
+
+
+
+
+
+
+
 }

@@ -17,7 +17,7 @@ public class FragmentActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_pager);
+        setContentView(R.layout.ui_main_fragment);
         String fragmentName = getIntent().getStringExtra("FragmentName");
         show(fragmentName);
     }

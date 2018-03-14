@@ -31,6 +31,6 @@ public abstract class BaseHolder<T> extends RecyclerView.ViewHolder {
         return activity;
     }
 
-    public abstract void onBindViewHolder(T o);
+    public abstract void onBindViewHolder(T object);
 }
 
