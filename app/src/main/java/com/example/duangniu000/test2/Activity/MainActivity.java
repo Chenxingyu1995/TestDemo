@@ -63,9 +63,6 @@ public class MainActivity extends BaseActivity {
         statusBar.setBackgroundColor(getColorRes(R.color.colorPrimary));
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
         netWork();
-
-
-
     }
 
 
@@ -95,8 +92,6 @@ public class MainActivity extends BaseActivity {
 
             }
         });
-
-
     }
 
 
@@ -201,7 +196,8 @@ public class MainActivity extends BaseActivity {
     protected void onStop() {
         if (!isAppOnForeground()) {
             //app 进入后台
-            isActive = false;//记录当前已经进入后台
+            //记录当前已经进入后台
+            isActive = false;
             Log.i("ACTIVITY", "程序进入后台");
         }
         super.onStop();

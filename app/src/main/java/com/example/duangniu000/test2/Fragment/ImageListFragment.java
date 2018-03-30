@@ -3,6 +3,8 @@ package com.example.duangniu000.test2.Fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.PagerSnapHelper;
 import android.view.View;
 
 import com.example.duangniu000.test2.Adaper.AbstractAdapter;
@@ -47,6 +49,9 @@ public class ImageListFragment extends RecyclerViewFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        PagerSnapHelper pagerSnapHelper = new PagerSnapHelper();
+        pagerSnapHelper.attachToRecyclerView(recyclerView);
         swipeRefreshLayout.setEnabledRefresh(false);
         swipeRefreshLayout.setEnabledloadMore(false);
     }

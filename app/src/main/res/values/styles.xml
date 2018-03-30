@@ -27,6 +27,24 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <declare-styleable name="StatusBarView">
+        <attr name="left_type">
+            <flag name="ICON" value="0" />
+            <flag name="TEXT" value="1" />
+        </attr>
+        <attr name="right_type">
+            <enum name="ICON" value="0" />
+            <enum name="TEXT" value="1" />
+        </attr>
+
+        <attr name="title_str" format="string|reference" />
+        <attr name="left_str" format="string|reference" />
+        <attr name="right_str" format="string|reference" />
+        <attr name="left_icon" format="reference" />
+        <attr name="right_icon" format="reference" />
+
+
+    </declare-styleable>
 
 
 </resources>

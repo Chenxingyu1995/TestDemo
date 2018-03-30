@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,13 +11,17 @@
     <com.example.duangniu000.test2.CoustomView.StatusBarView
         android:id="@+id/status_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        app:left_str="返回"
+        app:left_type="TEXT"
+        app:right_icon="@drawable/ic_brightness_7_black_24dp"
+        app:right_type="ICON"
+        app:title_str="@string/title" />
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tabView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </android.support.design.widget.TabLayout>
+        android:layout_height="wrap_content"></android.support.design.widget.TabLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"

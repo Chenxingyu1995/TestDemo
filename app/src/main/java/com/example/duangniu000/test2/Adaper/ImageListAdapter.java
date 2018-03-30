@@ -34,7 +34,7 @@ public class ImageListAdapter extends AbstractAdapter<String> {
             itemView.setOnClickListener(this);
             icon = itemView.findViewById(R.id.icon);
             options = new RequestOptions();
-            options.fitCenter();
+            options.centerCrop();
         }
 
         @Override
