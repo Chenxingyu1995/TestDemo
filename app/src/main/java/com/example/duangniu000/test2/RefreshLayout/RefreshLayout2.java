@@ -342,6 +342,7 @@ public class RefreshLayout2 extends ViewGroup {
             footIcon.setVisibility(GONE);
         } else {
 //            ToastUtil.showToast(getContext(), "刷新错误");
+            return;
         }
 
         if (ViewCompat.isAttachedToWindow(this)) {
@@ -506,6 +507,11 @@ public class RefreshLayout2 extends ViewGroup {
         if (min_distance == 0) {
             min_distance = 100;
         }
+    }
+
+    public void setEnabledRefreshOrMore(boolean enabled) {
+        enabled_load = enabled;
+        enabled_refresh = enabled;
     }
 
 

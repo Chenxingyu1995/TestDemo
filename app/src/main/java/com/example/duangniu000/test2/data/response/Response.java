@@ -1,4 +1,4 @@
-package com.example.duangniu000.test2.data;
+package com.example.duangniu000.test2.data.response;
 
 
 import java.io.Serializable;

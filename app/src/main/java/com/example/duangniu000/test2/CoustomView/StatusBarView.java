@@ -5,15 +5,23 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.duangniu000.test2.R;
 import com.example.duangniu000.test2.Util.StatusBarHelper;
+import com.example.duangniu000.test2.Util.ToastUtil;
+
+import butterknife.BindView;
 
 public class StatusBarView extends ViewGroup {
 
+
+    TextView titleTv;
+
+    ImageView set;
     private View status_bar_space;
 
     public StatusBarView(Context context) {
@@ -28,7 +36,19 @@ public class StatusBarView extends ViewGroup {
         super(context, attrs, defStyleAttr);
         View view = inflate(getContext(), R.layout.title_bar, this);
         status_bar_space = view.findViewById(R.id.status_space);
+//        set.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ToastUtil.showToast(getContext(),"set is on create ing...");
+//            }
+//        });
     }
+
+    public void setTitle(String title) {
+        titleTv.setText(title);
+    }
+
+
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {

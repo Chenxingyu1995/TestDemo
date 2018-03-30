@@ -11,6 +11,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,16 +19,20 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
+import com.example.duangniu000.test2.Adaper.ViewPagerAdapter;
 import com.example.duangniu000.test2.CoustomView.StatusBarView;
+import com.example.duangniu000.test2.Fragment.ImageListInTypeFragment;
 import com.example.duangniu000.test2.Okhttp.GsonCallBack;
 import com.example.duangniu000.test2.Okhttp.Params;
 import com.example.duangniu000.test2.Okhttp.RequestClient;
 import com.example.duangniu000.test2.Okhttp.Url;
 import com.example.duangniu000.test2.R;
 import com.example.duangniu000.test2.Util.StatusBarHelper;
-import com.example.duangniu000.test2.data.ShowApiResponse;
+import com.example.duangniu000.test2.data.ImageType;
+import com.example.duangniu000.test2.data.response.ImageTypeResponse;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -44,7 +49,8 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.viewPager)
     ViewPager viewPager;
 
-    private List<String> title;
+    private List<ImageType> title;
+    private ViewPagerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,18 +61,33 @@ public class MainActivity extends BaseActivity {
         StatusBarHelper.setStatusBarLightMode(this);
         statusBar.setStatusBar(translucent);
         statusBar.setBackgroundColor(getColorRes(R.color.colorPrimary));
+        adapter = new ViewPagerAdapter(getSupportFragmentManager());
         netWork();
+
+
+
     }
 
 
-    private void netWork(){
-
+    private void netWork() {
         Params build = Params.build();
-
-        RequestClient.Build().parms(build).url(Url.m1n2+Url.leixin).from().newCall(new GsonCallBack<ShowApiResponse>() {
+        RequestClient.Build().parms(build).url(Url.m1n2 + Url.leixin).from().newCall(new GsonCallBack<ImageTypeResponse>() {
             @Override
-            public void Response(Call call, ShowApiResponse response) {
-
+            public void Response(Call call, ImageTypeResponse response) {
+                title = response.getShowapi_res_body().getData();
+                int size = title.size();
+                List<Fragment> fragments = new ArrayList<>();
+                for (int i = 0; i < size; i++) {
+                    ImageListInTypeFragment listFragment = new ImageListInTypeFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("type", title.get(i).getId());
+                    listFragment.setArguments(bundle);
+                    fragments.add(listFragment);
+                }
+                adapter.setList(fragments);
+                adapter.setTitle(title);
+                viewPager.setAdapter(adapter);
+                tabView.setupWithViewPager(viewPager, true);
             }
 
             @Override

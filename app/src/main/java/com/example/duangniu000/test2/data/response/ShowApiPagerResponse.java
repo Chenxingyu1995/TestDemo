@@ -1,12 +1,14 @@
-package com.example.duangniu000.test2.data;
+package com.example.duangniu000.test2.data.response;
 
 
 import java.util.List;
 
-public class ShowApiImageTypeList extends Response {
+public class ShowApiPagerResponse<T> {
+
     private String ret_code;
     private String ret_message;
-    private List<ImageType> data;
+    private int total;
+    private List<T> data;
 
     public String getRet_code() {
         return ret_code;
@@ -24,11 +26,19 @@ public class ShowApiImageTypeList extends Response {
         this.ret_message = ret_message;
     }
 
-    public void setData(List<ImageType> data) {
-        this.data = data;
+    public int getTotal() {
+        return total;
     }
 
-    public List<ImageType> getData() {
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    public List<T> getData() {
         return data;
+    }
+
+    public void setData(List<T> data) {
+        this.data = data;
     }
 }

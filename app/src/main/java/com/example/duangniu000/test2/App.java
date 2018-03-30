@@ -2,11 +2,14 @@ package com.example.duangniu000.test2;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
+
+import com.example.duangniu000.test2.data.DataBaseUtil;
+import com.example.duangniu000.test2.data.SQLiteHelper;
 
 
 public class App extends MultiDexApplication {
@@ -53,12 +56,16 @@ public class App extends MultiDexApplication {
         }
     };
 
+
     @Override
     public void onCreate() {
         super.onCreate();
-        context = getApplicationContext();
-        registerActivityLifecycleCallbacks(callbacks);
+        SQLiteHelper sqLiteHelper = new SQLiteHelper(getBaseContext());
+        SQLiteDatabase database = sqLiteHelper.getWritableDatabase();
 
+        context = getBaseContext();
+        registerActivityLifecycleCallbacks(callbacks);
+        DataBaseUtil.build(database);
     }
 
     @Override

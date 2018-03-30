@@ -1,6 +1,8 @@
 package com.example.duangniu000.test2.data;
 
 
+import com.example.duangniu000.test2.data.response.Response;
+
 public class ImageType extends Response {
 
     private int id;

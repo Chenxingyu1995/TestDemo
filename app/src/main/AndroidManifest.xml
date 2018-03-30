@@ -16,18 +16,24 @@
         android:theme="@style/AppTheme.NoActionBar">
         <activity
             android:name=".Activity.MainActivity"
-            android:windowSoftInputMode="adjustResize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:windowSoftInputMode="adjustResize"></activity>
 
         <activity
             android:name=".Activity.FragmentActivity"
             android:windowSoftInputMode="adjustResize" />
 
         <activity android:name=".Activity.BaseActivity" />
+
+        <activity android:name=".Activity.LaunchActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+
+
 
     </application>
 

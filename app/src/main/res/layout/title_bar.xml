@@ -1,29 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <View
-        android:visibility="gone"
         android:id="@+id/status_space"
         android:layout_width="match_parent"
-        android:layout_height="20dp" />
+        android:layout_height="20dp"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/titleTv"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:layout_below="@+id/status_space"
         android:gravity="center"
         android:text="这里是文字"
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintTop_toBottomOf="@+id/status_bar" />
 
+    <ImageView
+        android:id="@+id/set"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/ic_brightness_7_black_24dp" />
+
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
+        android:layout_below="@+id/titleTv"
         android:background="#515353" />
 
-</LinearLayout>
+</RelativeLayout>

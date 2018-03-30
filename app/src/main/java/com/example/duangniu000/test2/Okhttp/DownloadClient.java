@@ -138,6 +138,73 @@ public class DownloadClient {
 
     }
 
+    public void downLoadFile(String url, String file_type) {
+        Message msg = handler.obtainMessage();
+        msg.what = 200;
+        handler.sendMessage(msg);
+        @SuppressLint("SimpleDateFormat")
+        String time = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        final File saveFile = new File(getSaveFile(), time + "." + file_type);
+        OkHttpClient okHttpClient = new OkHttpClient();
+        Request.Builder builder = new Request.Builder();
+        Request request = builder.url(url).build();
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                Message message = handler.obtainMessage();
+                message.what = 204;
+                handler.sendMessage(message);
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) {
+                if (response.isSuccessful()) {
+                    InputStream inputStream = null;
+                    FileOutputStream fos = null;
+                    try {
+                        inputStream = response.body().byteStream();
+                        fos = new FileOutputStream(saveFile);
+                        byte[] buff = new byte[1024 * 1024];
+                        long total = response.body().contentLength();
+                        int len = 0;
+                        long sumlen = 0;
+                        while ((len = inputStream.read(buff)) != -1) {
+                            sumlen += len;
+                            fos.write(buff, 0, len);
+                            float s1 = total;
+                            float s2 = sumlen;
+                            Message msg = handler.obtainMessage();
+                            msg.arg1 = (int) ((s2 / s1) * 100);
+                            msg.what = 201;
+                            handler.sendMessage(msg);
+                        }
+                        fos.flush();
+
+                    } catch (Exception ignored) {
+
+                    } finally {
+                        try {
+                            if (inputStream != null)
+                                inputStream.close();
+                        } catch (IOException e) {
+                        }
+                        try {
+                            if (fos != null)
+                                fos.close();
+                        } catch (IOException e) {
+                        }
+                        updateD(saveFile, App.getContext());
+                        Message msg = handler.obtainMessage();
+                        msg.what = 202;
+                        handler.sendMessage(msg);
+                    }
+                }
+            }
+        });
+
+
+    }
+
     private void updateD(File file, Context context) {
         try {
             MediaStore.Images.Media.insertImage(context.getContentResolver(),

@@ -4,6 +4,7 @@ package com.example.duangniu000.test2.Fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.example.duangniu000.test2.Adaper.AbstractAdapter;
@@ -20,26 +21,32 @@ import okhttp3.Call;
 
 public class RecyclerViewFragment extends AbsListFragment implements RefreshLayout2.OnRefreshListener {
 
-    protected AbstractAdapter abstractAdapter;
+
     protected String url;
     protected Class returnClass;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        abstractAdapter = onCreateAdapter();
+
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        abstractAdapter = onCreateAdapter();
+        recyclerView.setAdapter(abstractAdapter);
         swipeRefreshLayout.setOnRefreshListener(this);
+        swipeRefreshLayout.setEnabledRefresh(false);
+        netWork();
     }
 
     @Override
     protected AbstractAdapter onCreateAdapter() {
         return null;
     }
+
 
     @Override
     protected Params setParams() {
@@ -73,7 +80,7 @@ public class RecyclerViewFragment extends AbsListFragment implements RefreshLayo
     }
 
     protected void execResponse(Object response) {
-
+        swipeRefreshLayout.refreshComplete();
     }
 
 

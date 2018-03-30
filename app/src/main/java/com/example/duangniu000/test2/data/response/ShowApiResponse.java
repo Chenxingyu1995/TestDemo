@@ -1,12 +1,11 @@
-package com.example.duangniu000.test2.data;
+package com.example.duangniu000.test2.data.response;
 
 
 public class ShowApiResponse extends Response {
 
     private String showapi_res_code;
-    private String showapi_res_error;
-    private ShowApiImageTypeList showapi_res_body;
 
+    private String showapi_res_error;
 
     public String getShowapi_res_code() {
         return showapi_res_code;
@@ -24,11 +23,5 @@ public class ShowApiResponse extends Response {
         this.showapi_res_error = showapi_res_error;
     }
 
-    public ShowApiImageTypeList getShowapi_res_body() {
-        return showapi_res_body;
-    }
 
-    public void setShowapi_res_body(ShowApiImageTypeList showapi_res_body) {
-        this.showapi_res_body = showapi_res_body;
-    }
 }

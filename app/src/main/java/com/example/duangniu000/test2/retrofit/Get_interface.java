@@ -1,7 +1,7 @@
 package com.example.duangniu000.test2.retrofit;
 
 
-import com.example.duangniu000.test2.data.Response;
+import com.example.duangniu000.test2.data.response.Response;
 
 import java.util.HashMap;
 

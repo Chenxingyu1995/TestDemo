@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.example.duangniu000.test2.Adaper.ViewHolder.BaseHolder;
 import com.example.duangniu000.test2.App;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -35,7 +36,7 @@ public abstract class AbstractAdapter<T> extends RecyclerView.Adapter<BaseHolder
 
     @Override
     public void onBindViewHolder(BaseHolder<T> holder, int position) {
-        holder.onBindViewHolder(list.get(position));
+            holder.onBindViewHolder(list.get(position));
     }
 
     public Activity getActivity() {

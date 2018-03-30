@@ -105,7 +105,7 @@ public class TestRetroFit {
         parms.add("page", 1);
         parms.add("maxResult", 20);
 
-//        retrofit.create(Get_interface.class).getCall3("/341-3", parms.getField()).enqueue(new Callback<com.example.duangniu000.test2.data.Response>() {
+//        retrofit.create(Get_interface.class).getCall3("/341-3", parms.getField()).enqueue(new Callback<com.example.duangniu000.test2.data.response.Response>() {
 //            @Override
 //            public void onResponse(Call<JokerResponse> call, Response<JokerResponse> response) {
 //                List list = response.body().getShowapi_res_body().getContentlist();

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RoundRectangleTextView">
+        <attr name="round_radius" format="dimension" />
+        <attr name="background_color" format="color|integer" />
+    </declare-styleable>
+
+    <declare-styleable name="IconTextView">
+        <attr name="icon_width" format="dimension" />
+        <attr name="icon_height" format="dimension" />
+        <!--<attr name="EventType" format="integer" />-->
+        <attr name="icon_type" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="AutoSizeTextView">
+        <attr name="minTextSize" format="dimension" />
+    </declare-styleable>
+
+</resources>

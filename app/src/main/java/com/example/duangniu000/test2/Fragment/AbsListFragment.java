@@ -28,7 +28,7 @@ public abstract class AbsListFragment extends BaseFragment {
     @BindView(R.id.swipe_refresh_layout)
     protected RefreshLayout2 swipeRefreshLayout;
     Unbinder unbinder;
-
+    protected AbstractAdapter abstractAdapter;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,10 +45,15 @@ public abstract class AbsListFragment extends BaseFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
     }
 
     protected abstract AbstractAdapter onCreateAdapter();
+
+    public AbstractAdapter getAbstractAdapter() {
+
+        return abstractAdapter;
+    }
 
     protected abstract Params setParams();
 
