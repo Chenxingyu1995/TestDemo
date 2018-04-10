@@ -4,8 +4,10 @@ import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextPaint;
 import android.util.Log;
 
+import com.example.duangniu000.test2.MediaPlayer.MusicFragment;
 import com.example.duangniu000.test2.R;
 import com.example.duangniu000.test2.Util.ToastUtil;
 import com.example.duangniu000.test2.Util.Util;
@@ -32,28 +34,22 @@ public class LaunchActivity extends BaseActivity {
         Log.e("onCreate", word);
         Util.requestPermission(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA}, this, 200);
 
+        FragmentActivity.launcher(LaunchActivity.this, MusicFragment.class);
+        finish();
+
         pswView.setOnPasswordChangedListener(new GridPasswordView.OnPasswordChangedListener() {
             @Override
             public void onTextChanged(String psw) {
-                if (word.equals(psw)) {
-                    startActivity(new Intent(LaunchActivity.this, MainActivity.class));
-//                    FragmentActivity.launcher(LaunchActivity.this, PhotoPickerFragment.class);
 
-//                    PickerBuilder.build(LaunchActivity.this)
-//                            .maxCount(1)
-//                            .showGif(false)
-//                            .showPreView(false)
-//                            .start();
-
-                    finish();
-                } else {
-
-                }
             }
 
             @Override
             public void onInputFinish(String psw) {
-
+                if (word.equals(psw)) {
+//                    startActivity(new Intent(LaunchActivity.this, MainActivity.class));
+                    FragmentActivity.launcher(LaunchActivity.this, MusicFragment.class);
+                    finish();
+                }
             }
         });
     }

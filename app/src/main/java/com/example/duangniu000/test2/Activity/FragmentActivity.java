@@ -9,16 +9,19 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.duangniu000.test2.Fragment.BaseFragment;
 import com.example.duangniu000.test2.R;
 
 public class FragmentActivity extends BaseActivity {
 
 
+    String fragmentName;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ui_main_fragment);
-        String fragmentName = getIntent().getStringExtra("FragmentName");
+        fragmentName = getIntent().getStringExtra("FragmentName");
         show(fragmentName);
     }
 
@@ -57,4 +60,19 @@ public class FragmentActivity extends BaseActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+
+        Fragment fragment = getSupportFragmentManager().findFragmentByTag(fragmentName);
+
+        if (fragment != null && fragment instanceof BaseFragment) {
+            if (((BaseFragment) fragment).onBackPress()) {
+                //
+            } else {
+                super.onBackPressed();
+            }
+        }
+
+        super.onBackPressed();
+    }
 }

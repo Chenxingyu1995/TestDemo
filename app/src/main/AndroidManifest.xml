@@ -32,7 +32,7 @@
         </activity>
 
 
-
+        <service android:name=".MediaPlayer.PlayerService" />
 
 
     </application>

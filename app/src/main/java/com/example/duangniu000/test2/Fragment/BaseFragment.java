@@ -1,7 +1,10 @@
 package com.example.duangniu000.test2.Fragment;
+
 import android.support.v4.app.Fragment;
 import android.util.TypedValue;
+
 import com.example.duangniu000.test2.Util.DisplayHelper;
+
 import java.util.Collection;
 
 public class BaseFragment extends Fragment {
@@ -39,5 +42,8 @@ public class BaseFragment extends Fragment {
         return charSequence == null || charSequence.length() == 0;
     }
 
+    public boolean onBackPress() {
+        return false;
+    }
 
 }

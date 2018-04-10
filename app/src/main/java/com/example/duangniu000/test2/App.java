@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
+import com.example.duangniu000.test2.MediaPlayer.MusicPlayer;
 import com.example.duangniu000.test2.data.DataBaseUtil;
 import com.example.duangniu000.test2.data.SQLiteHelper;
 

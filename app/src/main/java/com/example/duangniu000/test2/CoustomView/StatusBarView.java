@@ -1,38 +1,24 @@
 package com.example.duangniu000.test2.CoustomView;
-
-
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.example.duangniu000.test2.R;
 import com.example.duangniu000.test2.Util.StatusBarHelper;
-import com.example.duangniu000.test2.Util.ToastUtil;
-
-import butterknife.BindView;
-
 public class StatusBarView extends ViewGroup {
 
-
     TextView titleTv;
-
     private int left_type;
     private int right_type;
-
     private String title;
-
     private View status_bar_space;
-
     private RelativeLayout left;
     private TextView left_text;
     private ImageView left_icon;
@@ -45,7 +31,6 @@ public class StatusBarView extends ViewGroup {
     int left_icon_res;
     private @DrawableRes
     int right_icon_res;
-
     private String leftStr;
     private String rightStr;
 
